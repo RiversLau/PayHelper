@@ -1,2 +1,2 @@
-# WeChatPayHelper
-微信支付开源框架
+# PayHelper
+支付开源框架
