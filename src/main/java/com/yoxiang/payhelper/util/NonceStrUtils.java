@@ -1,6 +1,8 @@
 package com.yoxiang.payhelper.util;
 
 /**
+ * 随机字符工具类
+ * 应用场景：生成手机验证码、随机字符串
  * Author: RiversLau
  * Date: 2018/2/6 12:36
  */

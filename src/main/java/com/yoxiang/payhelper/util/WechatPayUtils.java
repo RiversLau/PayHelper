@@ -1,6 +1,8 @@
 package com.yoxiang.payhelper.util;
 
 /**
+ * 微信支付工具类
+ * 用于生成各种微信支付签名；微信签名校验
  * Author: RiversLau
  * Date: 2018/2/6 11:33
  */

@@ -17,8 +17,8 @@ public class WechatPayHeader {
 
     private String sign;            // 签名
 
-    private String payType;
-    private String resultType;
+    private String payType;         // 支付类型
+    private String resultType;      // 结果类型
 
     public WechatPayHeader() {
         this.appId = Merchant.APP_ID;
