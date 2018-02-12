@@ -53,4 +53,43 @@ public class WechatPayHeader {
         root.appendChild(nonceStrEle);
         root.appendChild(signEle);
     }
+
+    //========================= GETTER/SETTER方法 =========================//
+
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public String getMchId() {
+        return mchId;
+    }
+
+    public String getMchKey() {
+        return mchKey;
+    }
+
+    public String getNonceStr() {
+        return nonceStr;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public String getResultType() {
+        return resultType;
+    }
+
+    public void setResultType(String resultType) {
+        this.resultType = resultType;
+    }
 }

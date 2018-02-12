@@ -9,6 +9,11 @@ import org.w3c.dom.Document;
 public abstract class WechatPay {
 
     /**
+     * 微信支付接口Header，用于处理相同的字段
+     */
+    protected WechatPayHeader wechatPayHeader;
+
+    /**
      *
      * @param document
      */
@@ -19,4 +24,8 @@ public abstract class WechatPay {
      * @param document
      */
     public abstract void write(Document document);
+
+    public WechatPayHeader getWechatPayHeader() {
+        return wechatPayHeader;
+    }
 }
