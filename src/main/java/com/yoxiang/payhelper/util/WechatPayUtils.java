@@ -1,9 +1,6 @@
 package com.yoxiang.payhelper.util;
 
-import com.yoxiang.payhelper.wxpay.WechatPay;
-import com.yoxiang.payhelper.wxpay.WechatPayHeader;
-import com.yoxiang.payhelper.wxpay.WechatPayTradeTypes;
-import com.yoxiang.payhelper.wxpay.WechatUnifiedOrderRequest;
+import com.yoxiang.payhelper.wxpay.*;
 
 import java.util.*;
 
@@ -34,7 +31,7 @@ public class WechatPayUtils {
         if (payType.equals(WechatPayTradeTypes.UNIFIED_ORDER)) {
             return genUnifiedOrderSign((WechatUnifiedOrderRequest) wechatPay);
         } else if (payType.equals(WechatPayTradeTypes.QUERY_ORDER)) {
-            return genQueryOrderSign();
+            return genQueryOrderSign((WechatQueryOrderRequest) wechatPay);
         } else if (payType.equals(WechatPayTradeTypes.CLOSE_ORDER)) {
             return genCloseOrderSign();
         } else {
@@ -67,8 +64,28 @@ public class WechatPayUtils {
         return genSign(params, mchKey);
     }
 
-    public static String genQueryOrderSign() {
-        return null;
+    /**
+     * 生成查询订单签名
+     * @param queryOrder 查询订单对象
+     * @return
+     */
+    public static String genQueryOrderSign(WechatQueryOrderRequest queryOrder) {
+
+        SortedMap<String, String> params = new TreeMap<String, String>();
+
+        WechatPayHeader payHeader = queryOrder.getWechatPayHeader();
+        params.put("appid", payHeader.getAppId());
+        params.put("mch_id", payHeader.getMchId());
+        params.put("nonce_str", payHeader.getNonceStr());
+        if (!StringUtils.isEmpty(queryOrder.getOutTradeNo())) {
+            params.put("out_trade_no", queryOrder.getOutTradeNo());
+        }
+        if (!StringUtils.isEmpty(queryOrder.getTransactionId())) {
+            params.put("transaction_id", queryOrder.getTransactionId());
+        }
+
+        String mchKey = payHeader.getMchKey();
+        return genSign(params, mchKey);
     }
 
     public static String genCloseOrderSign() {

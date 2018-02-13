@@ -117,9 +117,9 @@ public class WechatPayRequestHandler {
                 preOrder.read(resultDoc);
                 return preOrder;
             } else if (WechatPayTradeTypes.QUERY_ORDER_RESULT.equals(resultType)) {
-//                WechatXmlQueryOrderResult queryOrder = new WechatXmlQueryOrderResult(head);
-//                queryOrder.read(resultDoc);
-                return null;
+                WechatQueryOrderResponse queryOrder = new WechatQueryOrderResponse(head);
+                queryOrder.read(resultDoc);
+                return queryOrder;
             } else if (WechatPayTradeTypes.CLOSE_ORDER_RESULT.equals(resultType)) {
 //                WechatXmlCloseOrderResult queryOrder = new WechatXmlCloseOrderResult(head);
 //                queryOrder.read(resultDoc);
@@ -155,7 +155,6 @@ public class WechatPayRequestHandler {
         try {
             Transformer transformer = transFactory.newTransformer();
 
-            System.out.println(Charset.defaultCharset());
             transformer.setOutputProperty("encoding", Charsets.DEFAULT_CHARSET_NAME);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             transformer.transform(new DOMSource(document), new StreamResult(bos));
