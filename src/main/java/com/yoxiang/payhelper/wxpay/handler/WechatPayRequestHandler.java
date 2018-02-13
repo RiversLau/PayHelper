@@ -4,6 +4,9 @@ import com.yoxiang.payhelper.util.Charsets;
 import com.yoxiang.payhelper.util.WechatPayUtils;
 import com.yoxiang.payhelper.wxpay.*;
 import com.yoxiang.payhelper.wxpay.exception.WechatPayException;
+import com.yoxiang.payhelper.wxpay.response.WechatCloseOrderResponse;
+import com.yoxiang.payhelper.wxpay.response.WechatQueryOrderResponse;
+import com.yoxiang.payhelper.wxpay.response.WechatUnifiedOrderResponse;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.HttpClientUtils;
@@ -24,7 +27,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 
 /**
  * Author: Rivers
@@ -121,9 +123,9 @@ public class WechatPayRequestHandler {
                 queryOrder.read(resultDoc);
                 return queryOrder;
             } else if (WechatPayTradeTypes.CLOSE_ORDER_RESULT.equals(resultType)) {
-//                WechatXmlCloseOrderResult queryOrder = new WechatXmlCloseOrderResult(head);
-//                queryOrder.read(resultDoc);
-                return null;
+                WechatCloseOrderResponse queryOrder = new WechatCloseOrderResponse(head);
+                queryOrder.read(resultDoc);
+                return queryOrder;
             } else {
                 throw new WechatPayException("错误的微信响应类型【" + resultType + "】，暂时无法处理");
             }

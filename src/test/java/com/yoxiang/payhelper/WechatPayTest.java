@@ -2,6 +2,12 @@ package com.yoxiang.payhelper;
 
 import com.yoxiang.payhelper.wxpay.*;
 import com.yoxiang.payhelper.wxpay.handler.WechatPayRequestHandler;
+import com.yoxiang.payhelper.wxpay.request.WechatCloseOrderRequest;
+import com.yoxiang.payhelper.wxpay.request.WechatQueryOrderRequest;
+import com.yoxiang.payhelper.wxpay.request.WechatUnifiedOrderRequest;
+import com.yoxiang.payhelper.wxpay.response.WechatCloseOrderResponse;
+import com.yoxiang.payhelper.wxpay.response.WechatQueryOrderResponse;
+import com.yoxiang.payhelper.wxpay.response.WechatUnifiedOrderResponse;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,5 +57,24 @@ public class WechatPayTest {
         Assert.assertEquals(WechatPayStatusCode.SUCCESS, queryOrderResponse.getResultCode());
 
         System.out.println("交易状态：" + queryOrderResponse.getTradeState() + ";交集状态描述：" + queryOrderResponse.getTradeStateDes());
+    }
+
+    /**
+     * 关闭订单
+     */
+    @Test
+    public void testCloseOrder() {
+        WechatCloseOrderRequest closeOrderRequest = new WechatCloseOrderRequest();
+        closeOrderRequest.setOutTradeNo("201802131509358989");
+
+        WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(closeOrderRequest);
+        WechatCloseOrderResponse closeOrderResponse = (WechatCloseOrderResponse) requestHandler.process();
+
+        if (closeOrderResponse.isCloseOrderSucceed()) {
+            System.out.println("订单关闭成功");
+        } else {
+            System.out.println("订单关闭失败，errCode=" + closeOrderResponse.getErrCode() +
+                    "，errCodeDes=" + closeOrderResponse.getErrCodeDes());
+        }
     }
 }

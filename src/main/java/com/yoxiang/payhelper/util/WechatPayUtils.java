@@ -1,6 +1,9 @@
 package com.yoxiang.payhelper.util;
 
 import com.yoxiang.payhelper.wxpay.*;
+import com.yoxiang.payhelper.wxpay.request.WechatCloseOrderRequest;
+import com.yoxiang.payhelper.wxpay.request.WechatQueryOrderRequest;
+import com.yoxiang.payhelper.wxpay.request.WechatUnifiedOrderRequest;
 
 import java.util.*;
 
@@ -33,7 +36,7 @@ public class WechatPayUtils {
         } else if (payType.equals(WechatPayTradeTypes.QUERY_ORDER)) {
             return genQueryOrderSign((WechatQueryOrderRequest) wechatPay);
         } else if (payType.equals(WechatPayTradeTypes.CLOSE_ORDER)) {
-            return genCloseOrderSign();
+            return genCloseOrderSign((WechatCloseOrderRequest) wechatPay);
         } else {
             return null;
         }
@@ -88,8 +91,23 @@ public class WechatPayUtils {
         return genSign(params, mchKey);
     }
 
-    public static String genCloseOrderSign() {
-        return null;
+    /**
+     * 生成关闭订单签名
+     * @param closeOrder 关单对象
+     * @return
+     */
+    public static String genCloseOrderSign(WechatCloseOrderRequest closeOrder) {
+
+        SortedMap<String, String> params = new TreeMap<String, String>();
+
+        WechatPayHeader payHeader = closeOrder.getWechatPayHeader();
+        params.put("appid", payHeader.getAppId());
+        params.put("mch_id", payHeader.getMchId());
+        params.put("nonce_str", payHeader.getNonceStr());
+        params.put("out_trade_no", closeOrder.getOutTradeNo());
+
+        String mchKey = payHeader.getMchKey();
+        return genSign(params, mchKey);
     }
 
     /**

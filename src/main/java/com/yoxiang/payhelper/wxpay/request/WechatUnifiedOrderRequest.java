@@ -1,5 +1,6 @@
-package com.yoxiang.payhelper.wxpay;
+package com.yoxiang.payhelper.wxpay.request;
 
+import com.yoxiang.payhelper.wxpay.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

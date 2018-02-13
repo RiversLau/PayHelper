@@ -11,7 +11,7 @@ public abstract class WechatPay {
     /**
      * 微信支付接口Header，用于处理相同的字段
      */
-    protected WechatPayHeader wechatPayHeader;
+    public WechatPayHeader wechatPayHeader;
 
     /**
      *

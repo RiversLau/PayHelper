@@ -27,14 +27,14 @@ public class WechatPayHeader {
         this.nonceStr = WechatPayUtils.genNonceStr();
     }
 
-    protected void read(Document document) {
+    public void read(Document document) {
         this.appId = document.getElementsByTagName(WechatPayXmlElements.APPID).item(0).getTextContent();
         this.mchId = document.getElementsByTagName(WechatPayXmlElements.MCH_ID).item(0).getTextContent();
         this.nonceStr = document.getElementsByTagName(WechatPayXmlElements.NONCE_STR).item(0).getTextContent();
         this.sign = document.getElementsByTagName(WechatPayXmlElements.SIGN).item(0).getTextContent();
     }
 
-    protected void write(Element root, Document document) {
+    public void write(Element root, Document document) {
 
         Element appIdEle = document.createElement(WechatPayXmlElements.APPID);
         appIdEle.setTextContent(this.appId);

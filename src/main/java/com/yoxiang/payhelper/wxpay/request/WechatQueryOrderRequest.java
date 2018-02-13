@@ -1,6 +1,10 @@
-package com.yoxiang.payhelper.wxpay;
+package com.yoxiang.payhelper.wxpay.request;
 
 import com.yoxiang.payhelper.util.StringUtils;
+import com.yoxiang.payhelper.wxpay.WechatPay;
+import com.yoxiang.payhelper.wxpay.WechatPayHeader;
+import com.yoxiang.payhelper.wxpay.WechatPayTradeTypes;
+import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
