@@ -1,6 +1,9 @@
 package com.yoxiang.payhelper.wxpay.request;
 
-import com.yoxiang.payhelper.wxpay.*;
+import com.yoxiang.payhelper.wxpay.WechatPayRequest;
+import com.yoxiang.payhelper.wxpay.WechatPayHeader;
+import com.yoxiang.payhelper.wxpay.WechatPayTradeTypes;
+import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -9,7 +12,7 @@ import org.w3c.dom.Element;
  * Author: Rivers
  * Date: 2018/2/12 17:14
  */
-public class WechatUnifiedOrderRequest extends WechatPay {
+public class WechatUnifiedOrderRequest extends WechatPayRequest {
 
     private String attach;                  // 附加内容，微信会原样返回
     private String body;                    // 商品描述
@@ -24,17 +27,6 @@ public class WechatUnifiedOrderRequest extends WechatPay {
         this.wechatPayHeader.setPayType(WechatPayTradeTypes.UNIFIED_ORDER);
         this.wechatPayHeader.setResultType(WechatPayTradeTypes.UNIFIED_ORDER_RESULT);
         this.notifyUrl = notifyUrl;
-    }
-
-    // 将XML Document读取，并转化到对应的字段
-    public void read(Document document) {
-
-        this.attach = document.getElementsByTagName(WechatPayXmlElements.ATTACH).item(0).getTextContent();
-        this.body = document.getElementsByTagName(WechatPayXmlElements.BODY).item(0).getTextContent();
-        this.notifyUrl = document.getElementsByTagName(WechatPayXmlElements.NOTIFY_URL).item(0).getTextContent();
-        this.spbillCreateIp = document.getElementsByTagName(WechatPayXmlElements.SPBILL_CREATE_IP).item(0).getTextContent();
-        this.totalFee = document.getElementsByTagName(WechatPayXmlElements.TOTAL_FEE).item(0).getTextContent();
-        this.tradeType = document.getElementsByTagName(WechatPayXmlElements.TRADE_TYPE).item(0).getTextContent();
     }
 
     // 将对象转化为对应的XML Document对象

@@ -1,6 +1,6 @@
 package com.yoxiang.payhelper.wxpay.request;
 
-import com.yoxiang.payhelper.wxpay.WechatPay;
+import com.yoxiang.payhelper.wxpay.WechatPayRequest;
 import com.yoxiang.payhelper.wxpay.WechatPayHeader;
 import com.yoxiang.payhelper.wxpay.WechatPayTradeTypes;
 import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
@@ -11,22 +11,14 @@ import org.w3c.dom.Element;
  * Author: Rivers
  * Date: 2018/2/13 19:45
  */
-public class WechatCloseOrderRequest extends WechatPay {
+public class WechatCloseOrderRequest extends WechatPayRequest {
 
     private String outTradeNo;          // 商户订单号
 
-    public WechatCloseOrderRequest() {
-        this.wechatPayHeader = new WechatPayHeader();
+    public WechatCloseOrderRequest(String appId, String mchId, String mchKey) {
+        this.wechatPayHeader = new WechatPayHeader(appId, mchId, mchKey);
         this.wechatPayHeader.setPayType(WechatPayTradeTypes.CLOSE_ORDER);
         this.wechatPayHeader.setResultType(WechatPayTradeTypes.CLOSE_ORDER_RESULT);
-    }
-
-    /**
-     * 关单请求对象，无需读XML文档
-     * @param document
-     */
-    public void read(Document document) {
-        // do nothing
     }
 
     /**

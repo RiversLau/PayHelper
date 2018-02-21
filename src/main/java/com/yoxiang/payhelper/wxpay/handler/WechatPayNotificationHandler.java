@@ -1,8 +1,6 @@
 package com.yoxiang.payhelper.wxpay.handler;
 
 import com.yoxiang.payhelper.util.Charsets;
-import com.yoxiang.payhelper.wxpay.WechatPay;
-import com.yoxiang.payhelper.wxpay.WechatPayHeader;
 import com.yoxiang.payhelper.wxpay.WechatPayResponse;
 import com.yoxiang.payhelper.wxpay.response.WechatNotificationResponse;
 import org.slf4j.Logger;
@@ -51,9 +49,6 @@ public class WechatPayNotificationHandler {
     public WechatPayResponse process() {
         try {
             Document document = builder.parse(input);
-            WechatPayHeader wechatPayHead = new WechatPayHeader();
-            wechatPayHead.read(document);
-
             WechatNotificationResponse notifyResult = new WechatNotificationResponse();
             notifyResult.read(document);
             return notifyResult;

@@ -1,8 +1,6 @@
 package com.yoxiang.payhelper.wxpay.response;
 
-import com.yoxiang.payhelper.wxpay.WechatPayResponse;
-import com.yoxiang.payhelper.wxpay.WechatPayStatusCode;
-import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
+import com.yoxiang.payhelper.wxpay.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -12,6 +10,11 @@ import org.w3c.dom.Node;
  * Date: 2018/2/13 20:20
  */
 public class WechatCloseOrderResponse extends WechatPayResponse {
+
+    public WechatCloseOrderResponse() {
+        this.wechatPayHeader = new WechatPayHeader();
+        this.wechatPayHeader.setResultType(WechatPayTradeTypes.CLOSE_ORDER_RESULT);
+    }
 
     /**
      * 读取关单微信服务端返回的XML文档，转换为关单响应对象

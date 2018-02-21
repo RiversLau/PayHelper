@@ -1,9 +1,6 @@
 package com.yoxiang.payhelper.wxpay.response;
 
-import com.yoxiang.payhelper.wxpay.SubscribeStatus;
-import com.yoxiang.payhelper.wxpay.WechatPayResponse;
-import com.yoxiang.payhelper.wxpay.WechatPayStatusCode;
-import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
+import com.yoxiang.payhelper.wxpay.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -30,6 +27,10 @@ public class WechatNotificationResponse extends WechatPayResponse {
     private String openId;                          // 用户在商户appid下的唯一标识
     private SubscribeStatus subscribeStatus;        // 关注状态
 
+    public WechatNotificationResponse() {
+        this.wechatPayHeader = new WechatPayHeader();
+    }
+
     /**
      * 读取微信回调内容，将XML文档转换为该对象对应字段内容
      * @param document
@@ -39,6 +40,9 @@ public class WechatNotificationResponse extends WechatPayResponse {
         if (WechatPayStatusCode.SUCCESS.equals(returnCode)) {
             this.resultCode = document.getElementsByTagName(WechatPayXmlElements.RESULT_CODE).item(0).getTextContent();
             if (WechatPayStatusCode.SUCCESS.equals(resultCode)) {
+
+                wechatPayHeader.read(document);
+
                 this.outTradeNo = document.getElementsByTagName(WechatPayXmlElements.OUT_TRADE_NO).item(0).getTextContent();
                 this.transactionId = document.getElementsByTagName(WechatPayXmlElements.TRANSACTION_ID).item(0).getTextContent();
 

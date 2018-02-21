@@ -1,7 +1,7 @@
 package com.yoxiang.payhelper.wxpay.request;
 
 import com.yoxiang.payhelper.util.StringUtils;
-import com.yoxiang.payhelper.wxpay.WechatPay;
+import com.yoxiang.payhelper.wxpay.WechatPayRequest;
 import com.yoxiang.payhelper.wxpay.WechatPayHeader;
 import com.yoxiang.payhelper.wxpay.WechatPayTradeTypes;
 import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
@@ -13,27 +13,15 @@ import org.w3c.dom.Element;
  * Author: Rivers
  * Date: 2018/2/13 15:16
  */
-public class WechatQueryOrderRequest extends WechatPay {
+public class WechatQueryOrderRequest extends WechatPayRequest {
 
     private String transactionId;           // 微信的订单号
     private String outTradeNo;              // 商户订单号，与微信订单号二选一
 
-    public WechatQueryOrderRequest() {
-        this.wechatPayHeader = new WechatPayHeader();
+    public WechatQueryOrderRequest(String appId, String mchId, String mchKey) {
+        this.wechatPayHeader = new WechatPayHeader(appId, mchId, mchKey);
         this.wechatPayHeader.setPayType(WechatPayTradeTypes.QUERY_ORDER);
         this.wechatPayHeader.setResultType(WechatPayTradeTypes.QUERY_ORDER_RESULT);
-    }
-
-    public WechatQueryOrderRequest(WechatPayHeader wechatPayHeader) {
-        this.wechatPayHeader = wechatPayHeader;
-    }
-
-    /**
-     * 请求对象无需读取XML Document对象
-     * @param document
-     */
-    public void read(Document document) {
-        // do nothing
     }
 
     /**

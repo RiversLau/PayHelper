@@ -39,19 +39,19 @@ public class WechatPayRequestHandler {
     private final DocumentBuilder builder;
     private final TransformerFactory transFactory;
 
-    private WechatPay wechatPay;
+    private WechatPayRequest wechatPayRequest;
     private final String unifiedOrderUrl;
     private final String queryOrderUrl;
     private final String closeOrderUrl;
 
-    public WechatPayRequestHandler(WechatPay wechatPay) {
+    public WechatPayRequestHandler(WechatPayRequest wechatPayRequest) {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             builder = factory.newDocumentBuilder();
             transFactory = TransformerFactory.newInstance();
 
-            this.wechatPay = wechatPay;
+            this.wechatPayRequest = wechatPayRequest;
             this.unifiedOrderUrl = WechatPayApies.UNIFIED_ORDER_API_URL;
             this.queryOrderUrl = WechatPayApies.QUERY_ORDER_API_URL;
             this.closeOrderUrl = WechatPayApies.CLOSE_ORDER_API_URL;
@@ -65,22 +65,22 @@ public class WechatPayRequestHandler {
      * 处理请求
      */
     public WechatPayResponse process() {
-        return handleWechatOrder(this.wechatPay);
+        return handleWechatOrder(this.wechatPayRequest);
     }
 
     /**
      * 处理请求，并得到响应对象
-     * @param wechatPay
+     * @param wechatPayRequest
      * @return
      */
-    private WechatPayResponse handleWechatOrder(WechatPay wechatPay) {
+    private WechatPayResponse handleWechatOrder(WechatPayRequest wechatPayRequest) {
 
         Document document = builder.newDocument();
 
         // 生成签名
-        String sign = WechatPayUtils.genSign(wechatPay);
-        wechatPay.getWechatPayHeader().setSign(sign);
-        wechatPay.write(document);
+        String sign = WechatPayUtils.genSign(wechatPayRequest);
+        wechatPayRequest.getWechatPayHeader().setSign(sign);
+        wechatPayRequest.write(document);
 
         // 待发送的XML字符串数据
         String toSendXml = transXmlDocment2String(document);
@@ -90,8 +90,8 @@ public class WechatPayRequestHandler {
         CloseableHttpClient client = HttpClientBuilder.create().build();
 
         HttpPost httpost;
-        String payType = wechatPay.getWechatPayHeader().getPayType();
-        String resultType = wechatPay.getWechatPayHeader().getResultType();
+        String payType = wechatPayRequest.getWechatPayHeader().getPayType();
+        String resultType = wechatPayRequest.getWechatPayHeader().getResultType();
         if (WechatPayTradeTypes.UNIFIED_ORDER.equals(payType)) {
             httpost = new HttpPost(unifiedOrderUrl);
         } else if (WechatPayTradeTypes.QUERY_ORDER.equals(payType)) {

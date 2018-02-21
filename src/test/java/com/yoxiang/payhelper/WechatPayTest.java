@@ -51,7 +51,8 @@ public class WechatPayTest {
      */
     @Test
     public void testQueryOrder() {
-        WechatQueryOrderRequest queryOrderRequest = new WechatQueryOrderRequest();
+        Merchant merchant = Merchant.getInstance();
+        WechatQueryOrderRequest queryOrderRequest = new WechatQueryOrderRequest(merchant.getAppId(), merchant.getMchId(), merchant.getMchKey());
         queryOrderRequest.setOutTradeNo("201802131509358989");
 
         WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(queryOrderRequest);
@@ -68,7 +69,9 @@ public class WechatPayTest {
      */
     @Test
     public void testCloseOrder() {
-        WechatCloseOrderRequest closeOrderRequest = new WechatCloseOrderRequest();
+
+        Merchant merchant = Merchant.getInstance();
+        WechatCloseOrderRequest closeOrderRequest = new WechatCloseOrderRequest(merchant.getAppId(), merchant.getMchId(), merchant.getMchKey());
         closeOrderRequest.setOutTradeNo("201802131509358989");
 
         WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(closeOrderRequest);

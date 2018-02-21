@@ -25,18 +25,18 @@ public class WechatPayUtils {
 
     /**
      * 生成签名类
-     * @param wechatPay
+     * @param wechatPayRequest
      * @return
      */
-    public static String genSign(WechatPay wechatPay) {
+    public static String genSign(WechatPayRequest wechatPayRequest) {
 
-        String payType = wechatPay.getWechatPayHeader().getPayType();
+        String payType = wechatPayRequest.getWechatPayHeader().getPayType();
         if (payType.equals(WechatPayTradeTypes.UNIFIED_ORDER)) {
-            return genUnifiedOrderSign((WechatUnifiedOrderRequest) wechatPay);
+            return genUnifiedOrderSign((WechatUnifiedOrderRequest) wechatPayRequest);
         } else if (payType.equals(WechatPayTradeTypes.QUERY_ORDER)) {
-            return genQueryOrderSign((WechatQueryOrderRequest) wechatPay);
+            return genQueryOrderSign((WechatQueryOrderRequest) wechatPayRequest);
         } else if (payType.equals(WechatPayTradeTypes.CLOSE_ORDER)) {
-            return genCloseOrderSign((WechatCloseOrderRequest) wechatPay);
+            return genCloseOrderSign((WechatCloseOrderRequest) wechatPayRequest);
         } else {
             return null;
         }
