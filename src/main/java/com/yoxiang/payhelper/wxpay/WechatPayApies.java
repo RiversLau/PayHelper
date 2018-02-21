@@ -15,10 +15,4 @@ public interface WechatPayApies {
 
     // 关闭订单API URL地址
     String CLOSE_ORDER_API_URL = "https://api.mch.weixin.qq.com/pay/closeorder";
-
-    // 申请退款API URL地址
-    String REFUND_API_URL = "https://api.mch.weixin.qq.com/secapi/pay/refund";
-
-    // 查询退款API URL地址
-    String REFUND_QUERY_API_URL = "https://api.mch.weixin.qq.com/pay/refundquery";
 }
