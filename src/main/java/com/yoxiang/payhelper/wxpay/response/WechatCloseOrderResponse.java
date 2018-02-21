@@ -1,6 +1,5 @@
 package com.yoxiang.payhelper.wxpay.response;
 
-import com.yoxiang.payhelper.wxpay.WechatPayHeader;
 import com.yoxiang.payhelper.wxpay.WechatPayResponse;
 import com.yoxiang.payhelper.wxpay.WechatPayStatusCode;
 import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
@@ -13,10 +12,6 @@ import org.w3c.dom.Node;
  * Date: 2018/2/13 20:20
  */
 public class WechatCloseOrderResponse extends WechatPayResponse {
-
-    public WechatCloseOrderResponse(WechatPayHeader wechatPayHeader) {
-        this.wechatPayHeader = wechatPayHeader;
-    }
 
     /**
      * 读取关单微信服务端返回的XML文档，转换为关单响应对象

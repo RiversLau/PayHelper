@@ -1,7 +1,6 @@
 package com.yoxiang.payhelper.wxpay.response;
 
 import com.yoxiang.payhelper.util.StringUtils;
-import com.yoxiang.payhelper.wxpay.WechatPayHeader;
 import com.yoxiang.payhelper.wxpay.WechatPayResponse;
 import com.yoxiang.payhelper.wxpay.WechatPayStatusCode;
 import com.yoxiang.payhelper.wxpay.WechatPayXmlElements;
@@ -25,10 +24,6 @@ public class WechatQueryOrderResponse extends WechatPayResponse {
     private String bankType;            // 银行类型
     private Integer cashFee;            // 现金支付金额
     private String timeEnd;             // 支付完成时间
-
-    public WechatQueryOrderResponse(WechatPayHeader wechatPayHeader) {
-        this.wechatPayHeader = wechatPayHeader;
-    }
 
     /**
      * 读取XML Document对象转换为对应字段

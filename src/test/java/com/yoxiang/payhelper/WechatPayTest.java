@@ -25,17 +25,19 @@ public class WechatPayTest {
     @Test
     public void testUnifiedOrder() {
 
-        WechatUnifiedOrderRequest unifiedOrderRequest = new WechatUnifiedOrderRequest();
+        String notifyUrl = "http://riverslau.natapp1.cc/wxpay/msg";
+        Merchant merchant = Merchant.getInstance();
+        WechatPayHeader payHeader = new WechatPayHeader(merchant.getAppId(), merchant.getMchId(), merchant.getMchKey());
+        WechatUnifiedOrderRequest unifiedOrderRequest = new WechatUnifiedOrderRequest(payHeader, notifyUrl);
         unifiedOrderRequest.setBody("测试数据");
         unifiedOrderRequest.setAttach("测试附加内容");
-        unifiedOrderRequest.setNotifyUrl("http://riverslau.natapp1.cc/wxpay/msg");
         unifiedOrderRequest.setOutTradeNo("201802131509358989");
         unifiedOrderRequest.setSpbillCreateIp("127.0.0.1");
         unifiedOrderRequest.setTotalFee("1");
         unifiedOrderRequest.setTradeType("APP");
 
         WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(unifiedOrderRequest);
-        WechatPay wechatPay = requestHandler.process();
+        WechatPayResponse wechatPay = requestHandler.process();
         WechatUnifiedOrderResponse unifiedOrderResponse = (WechatUnifiedOrderResponse) wechatPay;
 
         Assert.assertEquals(WechatPayStatusCode.SUCCESS, unifiedOrderResponse.getReturnCode());

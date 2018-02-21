@@ -21,9 +21,12 @@ public class WechatPayHeader {
     private String resultType;      // 结果类型
 
     public WechatPayHeader() {
-        this.appId = Merchant.APP_ID;
-        this.mchId = Merchant.MCH_ID;
-        this.mchKey = Merchant.MCH_KEY;
+    }
+
+    public WechatPayHeader(String appId, String mchId, String mchKey) {
+        this.appId = appId;
+        this.mchId = mchId;
+        this.mchKey = mchKey;
         this.nonceStr = WechatPayUtils.genNonceStr();
     }
 

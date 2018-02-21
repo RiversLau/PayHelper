@@ -19,11 +19,11 @@ public class WechatUnifiedOrderRequest extends WechatPay {
     private String tradeType;               // 支付类型，APP、JSAPI、NATIVE
     private String outTradeNo;              // 商户订单号
 
-    public WechatUnifiedOrderRequest() {
-        this.wechatPayHeader = new WechatPayHeader();
+    public WechatUnifiedOrderRequest(WechatPayHeader payHeader, String notifyUrl) {
+        this.wechatPayHeader = payHeader;
         this.wechatPayHeader.setPayType(WechatPayTradeTypes.UNIFIED_ORDER);
         this.wechatPayHeader.setResultType(WechatPayTradeTypes.UNIFIED_ORDER_RESULT);
-        this.notifyUrl = Merchant.NOTIFY_URL;
+        this.notifyUrl = notifyUrl;
     }
 
     // 将XML Document读取，并转化到对应的字段

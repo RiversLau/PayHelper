@@ -3,6 +3,7 @@ package com.yoxiang.payhelper.wxpay.handler;
 import com.yoxiang.payhelper.util.Charsets;
 import com.yoxiang.payhelper.wxpay.WechatPay;
 import com.yoxiang.payhelper.wxpay.WechatPayHeader;
+import com.yoxiang.payhelper.wxpay.WechatPayResponse;
 import com.yoxiang.payhelper.wxpay.response.WechatNotificationResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,7 @@ public class WechatPayNotificationHandler {
      * 通过输入流，将XML文档转换为微信回调通知对象
      * @return
      */
-    public WechatPay process() {
+    public WechatPayResponse process() {
         try {
             Document document = builder.parse(input);
             WechatPayHeader wechatPayHead = new WechatPayHeader();

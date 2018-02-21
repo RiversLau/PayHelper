@@ -64,7 +64,7 @@ public class WechatPayRequestHandler {
     /**
      * 处理请求
      */
-    public WechatPay process() {
+    public WechatPayResponse process() {
         return handleWechatOrder(this.wechatPay);
     }
 
@@ -73,7 +73,7 @@ public class WechatPayRequestHandler {
      * @param wechatPay
      * @return
      */
-    private WechatPay handleWechatOrder(WechatPay wechatPay) {
+    private WechatPayResponse handleWechatOrder(WechatPay wechatPay) {
 
         Document document = builder.newDocument();
 
@@ -113,17 +113,16 @@ public class WechatPayRequestHandler {
 
             // 根据resultType得到对应的响应对象，暂时处理统一下单、查询订单、关单接口，
             // 后续添加查询退款、申请退款
-            WechatPayHeader head = new WechatPayHeader();
             if (WechatPayTradeTypes.UNIFIED_ORDER_RESULT.equals(resultType)) {
-                WechatUnifiedOrderResponse preOrder = new WechatUnifiedOrderResponse(head);
+                WechatUnifiedOrderResponse preOrder = new WechatUnifiedOrderResponse();
                 preOrder.read(resultDoc);
                 return preOrder;
             } else if (WechatPayTradeTypes.QUERY_ORDER_RESULT.equals(resultType)) {
-                WechatQueryOrderResponse queryOrder = new WechatQueryOrderResponse(head);
+                WechatQueryOrderResponse queryOrder = new WechatQueryOrderResponse();
                 queryOrder.read(resultDoc);
                 return queryOrder;
             } else if (WechatPayTradeTypes.CLOSE_ORDER_RESULT.equals(resultType)) {
-                WechatCloseOrderResponse queryOrder = new WechatCloseOrderResponse(head);
+                WechatCloseOrderResponse queryOrder = new WechatCloseOrderResponse();
                 queryOrder.read(resultDoc);
                 return queryOrder;
             } else {

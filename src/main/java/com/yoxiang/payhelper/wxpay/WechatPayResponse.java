@@ -4,14 +4,24 @@ package com.yoxiang.payhelper.wxpay;
  * Author: Rivers
  * Date: 2018/2/12 21:15
  */
-public abstract class WechatPayResponse extends WechatPay {
+public abstract class WechatPayResponse {
 
-    protected String returnCode;          // 通信标识
-    protected String returnMsg;           // 通信消息
+    protected WechatPayHeader wechatPayHeader;
 
-    protected String resultCode;          // 业务状态码
-    protected String errCode;             // 错误码
-    protected String errCodeDes;          // 错误码描述信息
+    protected String returnCode;                // 通信标识
+    protected String returnMsg;                 // 通信消息
+
+    protected String resultCode;                // 业务状态码
+    protected String errCode;                   // 错误码
+    protected String errCodeDes;                // 错误码描述信息
+
+    public WechatPayHeader getWechatPayHeader() {
+        return wechatPayHeader;
+    }
+
+    public void setWechatPayHeader(WechatPayHeader wechatPayHeader) {
+        this.wechatPayHeader = wechatPayHeader;
+    }
 
     public String getReturnCode() {
         return returnCode;
