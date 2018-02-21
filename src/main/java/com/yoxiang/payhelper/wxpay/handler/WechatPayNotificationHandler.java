@@ -11,7 +11,6 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,14 +29,12 @@ public class WechatPayNotificationHandler {
     private OutputStream output;
 
     private DocumentBuilder builder;
-    private TransformerFactory transformerFactory;
 
     public WechatPayNotificationHandler(InputStream input, OutputStream output) {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             builder = factory.newDocumentBuilder();
-            transformerFactory = TransformerFactory.newInstance();
 
             this.input = input;
             this.output = output;

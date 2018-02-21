@@ -1,11 +1,13 @@
 package com.yoxiang.payhelper;
 
 import com.yoxiang.payhelper.wxpay.*;
+import com.yoxiang.payhelper.wxpay.handler.WechatPayNotificationHandler;
 import com.yoxiang.payhelper.wxpay.handler.WechatPayRequestHandler;
 import com.yoxiang.payhelper.wxpay.request.WechatCloseOrderRequest;
 import com.yoxiang.payhelper.wxpay.request.WechatQueryOrderRequest;
 import com.yoxiang.payhelper.wxpay.request.WechatUnifiedOrderRequest;
 import com.yoxiang.payhelper.wxpay.response.WechatCloseOrderResponse;
+import com.yoxiang.payhelper.wxpay.response.WechatNotificationResponse;
 import com.yoxiang.payhelper.wxpay.response.WechatQueryOrderResponse;
 import com.yoxiang.payhelper.wxpay.response.WechatUnifiedOrderResponse;
 import org.junit.Assert;
@@ -76,5 +78,21 @@ public class WechatPayTest {
             System.out.println("订单关闭失败，errCode=" + closeOrderResponse.getErrCode() +
                     "，errCodeDes=" + closeOrderResponse.getErrCodeDes());
         }
+    }
+
+    /**
+     * 微信回调
+     */
+    @Test
+    public void testNotification() {
+
+        WechatPayNotificationHandler handler = new WechatPayNotificationHandler(null, null);
+        WechatNotificationResponse result = (WechatNotificationResponse) handler.process();
+        Assert.assertEquals(WechatPayStatusCode.SUCCESS, result.getReturnCode());
+        Assert.assertEquals(WechatPayStatusCode.SUCCESS, result.getResultCode());
+
+        handler.callBack("<xml><return_code><![CDATA[SUCCESS]]>" +
+                "</return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+        handler.close();
     }
 }

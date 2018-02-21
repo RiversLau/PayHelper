@@ -56,7 +56,6 @@ public class WechatPayHeader {
 
     //========================= GETTER/SETTER方法 =========================//
 
-
     public String getAppId() {
         return appId;
     }

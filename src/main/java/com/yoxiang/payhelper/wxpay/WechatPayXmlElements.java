@@ -35,6 +35,12 @@ public interface WechatPayXmlElements {
     String TOTAL_FEE = "total_fee";
     /**现金支付金额*/
     String CASH_FEE = "cash_fee";
+    /**现金支付货币类型，默认人民币CNY*/
+    String CASH_FEE_TYPE = "cash_fee_type";
+    /**代金券金额*/
+    String COUPON_FEE = "coupon_fee";
+    /**代金券使用数量*/
+    String COUPON_COUNT = "coupon_count";
     /**终端IP*/
     String SPBILL_CREATE_IP = "spbill_create_ip";
 
