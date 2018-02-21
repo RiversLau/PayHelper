@@ -91,6 +91,7 @@ public class WechatPayTest {
     @Test
     public void testNotification() {
 
+        // 通过HttpServletRequest得到InputStream，通过HttpServletResponse得到OutputStream
         WechatPayNotificationHandler handler = new WechatPayNotificationHandler(null, null);
         WechatNotificationResponse result = (WechatNotificationResponse) handler.process();
         Assert.assertEquals(WechatPayStatusCode.SUCCESS, result.getReturnCode());
