@@ -9,7 +9,7 @@
       <dependency>
          <groupId>vip.yoxiang</groupId>
          <artifactId>PayHelper</artifactId>
-         <version>${version}</version>
+         <version>1.0</version>
       </dependency>
 
 使用简介
