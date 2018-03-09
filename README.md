@@ -19,10 +19,13 @@ mchKey=XXXXX
 
 ============================================================================================
 
-通过Merchant.getInstance()获取商户对象，该方法默认自动加载资源目录下的wx_merchant.ini配置文件；当然你也可以通过Merchant.getInstance("资源路径")方法加载指定路径中的配置文件，可以通过classpath、url等方式加载配置文件
+通过Merchant.getInstance()获取商户对象，该方法默认自动加载资源目录下的wx_merchant.ini配置文件；
+当然你也可以通过Merchant.getInstance("资源路径")方法加载指定路径中的配置文件，可以通过classpath、url等方式加载配置文件
+
 
 统一下单
-    String notifyUrl = "回调地址";
+
+    String notifyUrl = "回调地址";
     Merchant merchant = Merchant.getInstance();
     WechatPayHeader payHeader = new WechatPayHeader(merchant.getAppId(), merchant.getMchId(), merchant.getMchKey());
     WechatUnifiedOrderRequest unifiedOrderRequest = new WechatUnifiedOrderRequest(payHeader, notifyUrl);
@@ -37,6 +40,7 @@ mchKey=XXXXX
     WechatUnifiedOrderResponse unifiedOrderResponse = (WechatUnifiedOrderResponse) wechatPay;
         
 查询订单
+
     Merchant merchant = Merchant.getInstance();
     WechatQueryOrderRequest queryOrderRequest = new WechatQueryOrderRequest(merchant.getAppId(), merchant.getMchId(),     merchant.getMchKey());
     queryOrderRequest.setOutTradeNo("201802131509358989");
@@ -44,6 +48,7 @@ mchKey=XXXXX
     WechatQueryOrderResponse queryOrderResponse = (WechatQueryOrderResponse) requestHandler.process();
     
 关闭订单
+
     Merchant merchant = Merchant.getInstance();
     WechatCloseOrderRequest closeOrderRequest = new WechatCloseOrderRequest(merchant.getAppId(), merchant.getMchId(), merchant.getMchKey());
     closeOrderRequest.setOutTradeNo("201802131509358989");
