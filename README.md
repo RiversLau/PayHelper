@@ -32,7 +32,8 @@ mchKey=XXXXX
 通过Merchant.getInstance()获取商户对象，该方法默认自动加载资源目录下的wx_merchant.ini配置文件；
 当然你也可以通过Merchant.getInstance("资源路径")方法加载指定路径中的配置文件，可以通过classpath、url等方式加载配置文件
 
-   
+
+
 统一下单
 
     String notifyUrl = "回调地址";
@@ -48,7 +49,8 @@ mchKey=XXXXX
     WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(unifiedOrderRequest);
     WechatPayResponse wechatPay = requestHandler.process();
     WechatUnifiedOrderResponse unifiedOrderResponse = (WechatUnifiedOrderResponse) wechatPay;
-        
+
+
 查询订单
 
     Merchant merchant = Merchant.getInstance();
@@ -56,7 +58,8 @@ mchKey=XXXXX
     queryOrderRequest.setOutTradeNo("201802131509358989");
     WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(queryOrderRequest);
     WechatQueryOrderResponse queryOrderResponse = (WechatQueryOrderResponse) requestHandler.process();
-    
+
+
 关闭订单
 
     Merchant merchant = Merchant.getInstance();
