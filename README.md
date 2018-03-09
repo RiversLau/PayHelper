@@ -39,6 +39,7 @@ mchKey=XXXXX
     WechatPayResponse wechatPay = requestHandler.process();
     WechatUnifiedOrderResponse unifiedOrderResponse = (WechatUnifiedOrderResponse) wechatPay;
         
+
 查询订单
 
     Merchant merchant = Merchant.getInstance();
@@ -47,6 +48,7 @@ mchKey=XXXXX
     WechatPayRequestHandler requestHandler = new WechatPayRequestHandler(queryOrderRequest);
     WechatQueryOrderResponse queryOrderResponse = (WechatQueryOrderResponse) requestHandler.process();
     
+
 关闭订单
 
     Merchant merchant = Merchant.getInstance();
