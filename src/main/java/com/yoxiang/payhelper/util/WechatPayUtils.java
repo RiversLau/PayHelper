@@ -111,6 +111,28 @@ public class WechatPayUtils {
     }
 
     /**
+     * 生成用于APP端拉起微信支付的签名，
+     * 同时返回签名的相关参数
+     * @param merchant 商户
+     * @param prepayId 预支付订单ID
+     * @return
+     */
+    public static Map genPayPullingSign4App(Merchant merchant, String prepayId) {
+
+        SortedMap sortedMap = new TreeMap<String, String>();
+        sortedMap.put("appid", merchant.getAppId());
+        sortedMap.put("partnerid", merchant.getMchId());
+        sortedMap.put("prepayid", prepayId);
+        sortedMap.put("package", "Sign=WXPay");
+        sortedMap.put("noncestr", NonceStrUtils.genRandomCode(false, 8));
+        sortedMap.put("timestamp", String.valueOf(new Date().getTime() / 1000));
+
+        String sign = genSign(sortedMap, merchant.getMchKey());
+        sortedMap.put("sign", sign);
+        return sortedMap;
+    }
+
+    /**
      * 生成签名最底层类
      * 通过有序Map以及商户API密钥来生成签名
      * @param params 有序Map
@@ -135,23 +157,5 @@ public class WechatPayUtils {
         System.out.println("生成Sign时拼接的字符串：：：：====" + sb.toString());
         String sign = EncryptUtils.MD5Encode(sb.toString(), Charsets.DEFAULT_CHARSET_NAME).toUpperCase();
         return sign;
-    }
-
-    /**
-     * 构建随机数
-     * @param length 随机数长度
-     *
-     * @return
-     */
-    private static int buildRandom(int length) {
-        int num = 1;
-        double random = Math.random();
-        if (random < 0.1) {
-            random = random + 0.1;
-        }
-        for (int i = 0; i < length; i++) {
-            num = num * 10;
-        }
-        return (int) ((random * num));
     }
 }

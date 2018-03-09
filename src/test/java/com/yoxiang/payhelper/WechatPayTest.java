@@ -61,7 +61,7 @@ public class WechatPayTest {
         Assert.assertEquals(WechatPayStatusCode.SUCCESS, queryOrderResponse.getReturnCode());
         Assert.assertEquals(WechatPayStatusCode.SUCCESS, queryOrderResponse.getResultCode());
 
-        System.out.println("交易状态：" + queryOrderResponse.getTradeState() + ";交集状态描述：" + queryOrderResponse.getTradeStateDes());
+        System.out.println("交易状态：" + queryOrderResponse.getTradeState() + ";交易状态描述：" + queryOrderResponse.getTradeStateDes());
     }
 
     /**
