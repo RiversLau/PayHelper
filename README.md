@@ -75,4 +75,3 @@ mchKey=XXXXX
     WechatNotificationResponse result = (WechatNotificationResponse) handler.process();
     handler.callBack("<xml><return_code><![CDATA[SUCCESS]]>" + "</return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
     handler.close();
-    
