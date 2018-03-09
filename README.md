@@ -71,8 +71,8 @@ mchKey=XXXXX
 
 微信支付回调通知处理
 
-      WechatPayNotificationHandler handler = new WechatPayNotificationHandler(request.getInputStream(), response.getOutputStream());
-      WechatNotificationResponse result = (WechatNotificationResponse) handler.process();
-      handler.callBack("<xml><return_code><![CDATA[SUCCESS]]>" + "</return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
-      handler.close();
+    WechatPayNotificationHandler handler = new WechatPayNotificationHandler(request.getInputStream(), response.getOutputStream());
+    WechatNotificationResponse result = (WechatNotificationResponse) handler.process();
+    handler.callBack("<xml><return_code><![CDATA[SUCCESS]]>" + "</return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+    handler.close();
     
